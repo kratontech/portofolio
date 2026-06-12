@@ -58,7 +58,12 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
           {/* Logo */}
           <Link to="/" className="group flex items-center gap-2 font-extrabold tracking-tight text-lg">
-            <img src="/logo.png" alt="Kraton Tech Logo" className="h-8 w-8 object-contain transition-transform duration-700 ease-in-out group-hover:rotate-[360deg]" />
+            <img
+              src="/logo.png"
+              alt="Kraton Tech Logo"
+              className="h-8 w-8 object-contain rounded-lg transition-all duration-700 ease-in-out group-hover:rotate-[360deg]"
+              style={dark ? { backgroundColor: 'white', padding: '4px' } : {}}
+            />
             <span className="text-slate-900 dark:text-white transition-colors duration-200 group-hover:text-slate-600 dark:group-hover:text-slate-300">
               Kraton<span className="text-indigo-600 dark:text-indigo-400 transition-all duration-200 group-hover:text-indigo-500">tech</span>
             </span>
