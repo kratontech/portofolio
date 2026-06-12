@@ -11,7 +11,8 @@ const projects = [
   { title: 'Website Profile Himatif', category: 'Company Profile', desc: 'Website profile himpunan teknik informatika dengan desain informatif dan profesional.', tech: ['React', 'Tailwind CSS', 'Netlify'], challenge: 'Menampilkan struktur organisasi, kegiatan, dan informasi akademik secara terstruktur.', result: 'Platform digital resmi himpunan yang aktif digunakan untuk publikasi kegiatan.', status: 'Selesai', image: '/images/projects/himatif.png', url: 'https://himatif-stmik.netlify.app/' },
   { title: 'Platform Pencari Kerja', category: 'Web Application', desc: 'Platform karir lokal yang menampilkan lowongan pekerjaan dengan fitur pencarian dan filter kategori.', tech: ['JavaScript', 'GitHub Pages', 'REST API'], challenge: 'Aggregasi data lowongan kerja dari berbagai sumber dengan performa pencarian yang cepat.', result: 'Membantu ratusan pencari kerja di Cirebon menemukan lowongan yang relevan.', status: 'Selesai', image: '/images/projects/karir.png', url: 'https://ddhodi.github.io/karircirebon.github.io/' },
   { title: 'E-Learning Platform', category: 'Web Application', desc: 'Platform pembelajaran online dengan manajemen kursus, progress tracking, dan sistem sertifikasi digital.', tech: ['React', 'Node.js', 'PostgreSQL', 'Docker'], challenge: 'Membangun sistem autentikasi multi-role (admin, instruktur, siswa) dengan dashboard yang intuitif.', result: 'Mendukung lebih dari 500 pengguna aktif dengan uptime 99.5% selama masa operasional.', status: 'Selesai', image: null, url: null },
-  { title: 'KasirKu – POS Vapeshop', category: 'Mobile App', desc: 'Aplikasi kasir Android khusus vapeshop dengan manajemen produk multi-kategori (Device, Liquid, Coil, Aksesoris), transaksi tunai & QRIS, serta laporan penjualan harian.', tech: ['React Native', 'Android', 'SQLite'], challenge: 'Merancang alur kasir yang cepat dengan kategori produk spesifik vapeshop dan dukungan pembayaran QRIS tanpa koneksi server eksternal.', result: 'Proses transaksi lebih terstruktur dengan fitur backup/restore data JSON sehingga data aman saat ganti perangkat.', status: 'Selesai', image: '/images/projects/kasirku.png', url: null },
+  { title: 'Mobile App Inventory', category: 'Mobile App', desc: 'Aplikasi manajemen inventaris berbasis Android untuk monitoring stok gudang secara real-time.', tech: ['React Native', 'Firebase', 'Android'], challenge: 'Sinkronisasi data offline-online dan barcode scanning untuk pencatatan barang yang akurat.', result: 'Mengurangi kesalahan pencatatan inventaris hingga 85% dibanding sistem manual.', status: 'Selesai', image: null, url: null },
+  { title: 'KasirKu – POS Vapeshop', category: 'Mobile App', desc: 'Aplikasi kasir Android khusus vapeshop dengan manajemen produk multi-kategori (Device, Liquid, Coil, Aksesoris), transaksi tunai & QRIS, serta laporan penjualan harian.', tech: ['React Native', 'Android', 'SQLite'], challenge: 'Merancang alur kasir yang cepat dengan kategori produk spesifik vapeshop dan dukungan pembayaran QRIS tanpa koneksi server eksternal.', result: 'Proses transaksi lebih terstruktur dengan fitur backup/restore data JSON sehingga data aman saat ganti perangkat.', status: 'Selesai', image: '/images/projects/kasirku-multiscreen.png', imageFit: 'contain', url: null },
   { title: 'Network Infrastructure Office', category: 'Network Infrastructure', desc: 'Perancangan dan implementasi jaringan enterprise untuk kantor 3 lantai dengan 80+ endpoint.', tech: ['Mikrotik', 'Cisco', 'VLAN', 'VPN'], challenge: 'Segmentasi jaringan antar divisi dengan bandwidth management dan keamanan akses terpusat.', result: 'Stabilitas jaringan meningkat signifikan, latensi internal turun hingga 60%.', status: 'Selesai', image: null, url: null },
   { title: 'Server Migration & Virtualization', category: 'Server & Cloud', desc: 'Migrasi server fisik ke lingkungan virtual berbasis Proxmox untuk efisiensi resource dan kemudahan manajemen.', tech: ['Proxmox', 'Linux', 'VMware', 'Backup Tools'], challenge: 'Zero-downtime migration dengan memastikan semua layanan berjalan tanpa interupsi selama proses.', result: 'Penghematan biaya operasional 40% dan kemudahan disaster recovery dengan snapshot otomatis.', status: 'Selesai', image: null, url: null },
   { title: 'Enterprise IT Infrastructure', category: 'Enterprise Solution', desc: 'Implementasi infrastruktur IT menyeluruh — jaringan, server, keamanan, dan monitoring terpusat untuk perusahaan manufaktur.', tech: ['Linux', 'Docker', 'Mikrotik', 'Zabbix', 'pfSense'], challenge: 'Integrasi sistem lama (legacy) dengan infrastruktur modern tanpa mengganggu operasional produksi.', result: 'Infrastruktur yang fully monitored dengan alert real-time dan response time insiden < 15 menit.', status: 'Selesai', image: null, url: null },
@@ -52,6 +53,7 @@ function TechBadge({ name }) {
 export default function Projects() {
   useReveal()
   const [active, setActive] = useState('Semua')
+  const [lightbox, setLightbox] = useState(null)
 
   useEffect(() => {
     document.querySelectorAll('.section-reveal').forEach(el => el.classList.add('visible'))
@@ -105,9 +107,18 @@ export default function Projects() {
               <div key={project.title}
                 className="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden transition-all duration-200 hover:border-indigo-200 dark:hover:border-indigo-600 hover:shadow-md hover:-translate-y-0.5">
                 {project.image ? (
-                  <div className="relative overflow-hidden">
-                    <img src={project.image} alt={project.title} className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className={`relative overflow-hidden ${project.imageFit === 'contain' ? 'bg-slate-50 dark:bg-slate-900' : ''}`}>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      onClick={() => setLightbox({ src: project.image, title: project.title })}
+                      className={
+                        project.imageFit === 'contain'
+                          ? 'h-48 w-full object-contain p-2 cursor-zoom-in transition-transform duration-500 group-hover:scale-105'
+                          : 'h-44 w-full object-cover cursor-zoom-in transition-transform duration-500 group-hover:scale-105'
+                      }
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     {project.url && (
                       <a href={project.url} target="_blank" rel="noopener noreferrer"
                         className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -120,6 +131,15 @@ export default function Projects() {
                         <span className="h-1.5 w-1.5 rounded-full bg-white" />{project.status}
                       </span>
                     </div>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setLightbox({ src: project.image, title: project.title }) }}
+                      title="Lihat tampilan lengkap"
+                      className="absolute top-3 right-3 inline-flex items-center justify-center rounded-full bg-white/90 dark:bg-slate-900/80 p-2 text-slate-700 dark:text-slate-200 backdrop-blur shadow opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16zM11 8v6M8 11h6" />
+                      </svg>
+                    </button>
                   </div>
                 ) : (
                   <div className="flex h-14 items-center justify-between border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50 px-5">
@@ -166,6 +186,28 @@ export default function Projects() {
 
         </div>
       </main>
+
+      {/* IMAGE LIGHTBOX */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm"
+          onClick={() => setLightbox(null)}
+        >
+          <div className="relative max-h-[90vh] max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => setLightbox(null)}
+              aria-label="Tutup"
+              className="absolute -top-3 -right-3 inline-flex items-center justify-center rounded-full bg-white text-slate-900 shadow-lg p-2 hover:bg-slate-100 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <img src={lightbox.src} alt={lightbox.title} className="w-full max-h-[80vh] object-contain rounded-xl shadow-2xl bg-white" />
+            <p className="mt-3 text-center text-sm font-medium text-slate-200">{lightbox.title}</p>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   )
