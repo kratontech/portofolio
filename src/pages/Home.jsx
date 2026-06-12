@@ -5,9 +5,9 @@ import Footer from '../components/Footer'
 import { useReveal } from '../hooks/useReveal'
 
 const stats = [
-  { num: '50+', label: 'Proyek Selesai' },
+  { num: '50+', label: 'Total Proyek Selesai' },
   { num: '30+', label: 'Klien Enterprise' },
-  { num: '5+', label: 'Tahun Pengalaman' },
+  { num: '3+', label: 'Tahun Pengalaman' },
   { num: '99%', label: 'Uptime Garansi' },
 ]
 

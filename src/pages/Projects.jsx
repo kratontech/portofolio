@@ -78,7 +78,7 @@ export default function Projects() {
               Dari pengembangan platform digital hingga implementasi infrastruktur enterprise — setiap proyek diselesaikan dengan standar teknis yang terukur.
             </p>
             <div className="section-reveal mt-8 flex items-center gap-6">
-              <div><p className="text-3xl font-extrabold text-white">{projects.length}+</p><p className="mt-0.5 text-xs text-slate-500 uppercase tracking-wide">Proyek Pilihan yang ditampilkan</p></div>
+              <div><p className="text-3xl font-extrabold text-white">{projects.length}+</p><p className="mt-0.5 text-xs text-slate-500 uppercase tracking-wide">Proyek Unggulan</p></div>
               <div className="h-8 w-px bg-slate-800" />
               <div><p className="text-3xl font-extrabold text-white">{categories.length - 1}</p><p className="mt-0.5 text-xs text-slate-500 uppercase tracking-wide">Kategori Layanan</p></div>
             </div>
