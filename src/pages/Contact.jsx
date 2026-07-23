@@ -4,12 +4,23 @@ import Footer from '../components/Footer'
 import { useReveal } from '../hooks/useReveal'
 
 const contactInfo = [
+    // {
+  //   label: 'WhatsApp', value: '+62 838-2455-9457', sub: 'Respon dalam hitungan menit',
+  //   href: 'https://wa.me/6283824559457', cta: 'Chat Sekarang',
+  //   icon: (<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>),
+  //   accent: 'bg-emerald-600 hover:bg-emerald-500 text-white',
+  //   iconBg: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white',
+  // },
   {
-    label: 'WhatsApp', value: '+62 838-2455-9457', sub: 'Respon dalam hitungan menit',
-    href: 'https://wa.me/6283824559457', cta: 'Chat Sekarang',
-    icon: (<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>),
-    accent: 'bg-emerald-600 hover:bg-emerald-500 text-white',
-    iconBg: 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white',
+    label: 'Instagram', value: '@kratontech', sub: 'DM kami untuk respon cepat',
+    href: 'https://instagram.com/kratontech', cta: 'Kunjungi Instagram',
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      </svg>
+    ),
+    accent: 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-90 text-white',
+    iconBg: 'bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 group-hover:bg-pink-600 group-hover:text-white',
   },
   {
     label: 'Email', value: 'kratontech@gmail.com', sub: 'Untuk brief & penawaran formal',
@@ -18,13 +29,6 @@ const contactInfo = [
     accent: 'border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-400',
     iconBg: 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white',
   },
-  // {
-  //   label: 'Website', value: 'www.kratontech.id', sub: 'Company profile & portofolio',
-  //   href: 'https://www.kratontech.id', cta: 'Kunjungi',
-  //   icon: (<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582" /></svg>),
-  //   accent: 'border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-400',
-  //   iconBg: 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-slate-800 group-hover:text-white',
-  // },
   {
     label: 'Lokasi', value: 'Cirebon, Jawa Barat', sub: 'Indonesia — Melayani seluruh wilayah',
     href: 'https://maps.google.com/?q=Cirebon,Jawa+Barat,Indonesia', cta: 'Lihat Maps',
@@ -49,10 +53,23 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const { name, company, service, message } = form
-    const text = `Halo Kraton Tech,%0A%0ANama: ${name}%0APerusahaan: ${company}%0ALayanan: ${service}%0A%0APesan:%0A${message}`
-    window.open(`https://wa.me/6283824559457?text=${text}`, '_blank')
+    // Karena Instagram tidak mendukung URL pre-filled text seperti WA, 
+    // opsi terbaik adalah mengarahkan langsung ke direct message IG / profil IG.
+    window.open('https://instagram.com/kratontech', '_blank')
     setSent(true)
+  }
+
+  // function handleSubmit(e) {
+  //   e.preventDefault()
+  //   const { name, company, service, message } = form
+  //   const text = `Halo Kraton Tech,%0A%0ANama: ${name}%0APerusahaan: ${company}%0ALayanan: ${service}%0A%0APesan:%0A${message}`
+  //   window.open(`https://wa.me/6283824559457?text=${text}`, '_blank')
+  //   setSent(true)
+  // }
+
+  // Helper fungsi untuk membuka link tanpa merender tag <a> (mencegah URL preview di pojok kiri bawah)
+  function handleNavigate(url) {
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -90,11 +107,12 @@ export default function Contact() {
                       <p className="text-xs text-slate-500 dark:text-slate-400">{c.sub}</p>
                     </div>
                   </div>
-                  <a href={c.href} target="_blank" rel="noopener noreferrer"
+                  {/* Diubah menggunakan button agar tidak muncul preview link di pojok kiri bawah */}
+                  <button type="button" onClick={() => handleNavigate(c.href)}
                     className={`btn-press mt-3 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-150 ${c.accent}`}>
                     {c.cta}
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                  </a>
+                  </button>
                 </div>
               ))}
 
@@ -116,11 +134,11 @@ export default function Contact() {
 
                 {sent ? (
                   <div className="flex flex-col items-center gap-3 py-10 text-center">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400">
                       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     </div>
-                    <h3 className="font-bold text-slate-900 dark:text-white">Pesan terkirim ke WhatsApp!</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs">Tim kami akan merespons dalam waktu singkat. Terima kasih telah menghubungi Kraton Tech.</p>
+                    <h3 className="font-bold text-slate-900 dark:text-white">Mengarahkan ke Instagram...</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs">Silakan kirimkan pesan Anda melalui DM Instagram Kraton Tech. Terima kasih!</p>
                     <button onClick={() => { setForm({ name: '', company: '', email: '', phone: '', service: '', message: '' }); setSent(false) }}
                       className="mt-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400 underline underline-offset-4 hover:text-indigo-500">
                       Kirim pesan lain
@@ -144,7 +162,7 @@ export default function Contact() {
                         <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="john@perusahaan.com" className={inputClass} />
                       </div>
                       <div>
-                        <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Nomor WhatsApp</label>
+                        <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Nomor Telepon</label>
                         <input name="phone" value={form.phone} onChange={handleChange} placeholder="08xxxxxxxxxx" className={inputClass} />
                       </div>
                     </div>
@@ -162,11 +180,11 @@ export default function Contact() {
                         className={inputClass + ' resize-none'} />
                     </div>
                     <button type="submit"
-                      className="btn-press w-full inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
-                      Kirim via WhatsApp
+                      className="btn-press w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5">
+                      Hubungi via Instagram DM
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                     </button>
-                    <p className="text-center text-xs text-slate-400 dark:text-slate-500">Form akan diteruskan ke WhatsApp kami. Konsultasi pertama gratis, tanpa komitmen.</p>
+                    <p className="text-center text-xs text-slate-400 dark:text-slate-500">Anda akan diarahkan ke DM Instagram kami. Konsultasi pertama gratis, tanpa komitmen.</p>
                   </form>
                 )}
               </div>
