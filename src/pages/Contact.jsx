@@ -23,8 +23,8 @@ const contactInfo = [
     iconBg: 'bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 group-hover:bg-pink-600 group-hover:text-white',
   },
   {
-    label: 'Email', value: 'kratontech@gmail.com', sub: 'Untuk brief & penawaran formal',
-    href: 'mailto:kratontech@gmail.com', cta: 'Kirim Email',
+    label: 'Email', value: 'teamdev@kratontech.my.id', sub: 'Untuk brief & penawaran formal',
+    href: 'mailto:teamdev@kratontech.my.id', cta: 'Kirim Email',
     icon: (<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>),
     accent: 'border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white hover:border-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-400',
     iconBg: 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white',
@@ -51,21 +51,21 @@ export default function Contact() {
 
   function handleChange(e) { setForm(f => ({ ...f, [e.target.name]: e.target.value })) }
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    // Karena Instagram tidak mendukung URL pre-filled text seperti WA, 
-    // opsi terbaik adalah mengarahkan langsung ke direct message IG / profil IG.
-    window.open('https://instagram.com/kratontech', '_blank')
-    setSent(true)
-  }
-
   // function handleSubmit(e) {
   //   e.preventDefault()
-  //   const { name, company, service, message } = form
-  //   const text = `Halo Kraton Tech,%0A%0ANama: ${name}%0APerusahaan: ${company}%0ALayanan: ${service}%0A%0APesan:%0A${message}`
-  //   window.open(`https://wa.me/6283824559457?text=${text}`, '_blank')
+  //   // Karena Instagram tidak mendukung URL pre-filled text seperti WA, 
+  //   // opsi terbaik adalah mengarahkan langsung ke direct message IG / profil IG.
+  //   window.open('https://instagram.com/kratontech', '_blank')
   //   setSent(true)
   // }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const { name, company, service, message } = form
+    const text = `Halo Kraton Tech,%0A%0ANama: ${name}%0APerusahaan: ${company}%0ALayanan: ${service}%0A%0APesan:%0A${message}`
+    window.open(`https://wa.me/6283824559457?text=${text}`, '_blank')
+    setSent(true)
+  }
 
   // Helper fungsi untuk membuka link tanpa merender tag <a> (mencegah URL preview di pojok kiri bawah)
   function handleNavigate(url) {
