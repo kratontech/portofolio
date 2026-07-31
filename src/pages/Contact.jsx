@@ -69,7 +69,13 @@ export default function Contact() {
 
   // Helper fungsi untuk membuka link tanpa merender tag <a> (mencegah URL preview di pojok kiri bawah)
   function handleNavigate(url) {
-    window.open(url, '_blank', 'noopener,noreferrer')
+    if (url.startsWith('mailto:') || url.startsWith('tel:')) {
+      // mailto: dan tel: harus pakai location, bukan window.open,
+      // karena window.open sering gagal trigger app default & malah nyisa tab kosong
+      window.location.href = url
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer')
+    }
   }
 
   return (
