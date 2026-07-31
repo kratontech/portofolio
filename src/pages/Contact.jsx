@@ -69,9 +69,12 @@ export default function Contact() {
 
   // Helper fungsi untuk membuka link tanpa merender tag <a> (mencegah URL preview di pojok kiri bawah)
   function handleNavigate(url) {
-    if (url.startsWith('mailto:') || url.startsWith('tel:')) {
-      // mailto: dan tel: harus pakai location, bukan window.open,
-      // karena window.open sering gagal trigger app default & malah nyisa tab kosong
+    if (url.startsWith('mailto:')) {
+      const email = url.replace('mailto:', '')
+      navigator.clipboard.writeText(email).catch(() => {})
+      window.location.href = url
+      // opsional: kasih feedback visual, misal toast "Email disalin: teamdev@kratontech.my.id"
+    } else if (url.startsWith('tel:')) {
       window.location.href = url
     } else {
       window.open(url, '_blank', 'noopener,noreferrer')
