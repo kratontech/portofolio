@@ -63,7 +63,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1 space-y-4">
             <Link to="/" className="inline-flex items-center gap-2 font-extrabold tracking-tight text-lg text-white">
-              <img src="/logo.png" alt="Kraton Tech" className="h-8 w-8 rounded-lg bg-white object-contain p-0.5" />
+              <img src="/logo.png" alt="Kraton Tech" width="32" height="32" loading="lazy" className="h-8 w-8 rounded-lg bg-white object-contain p-0.5" />
               {"Kraton"}<span className="text-indigo-400">tech</span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed max-w-[200px]">
@@ -81,7 +81,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">Navigasi</p>
+            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Navigasi</p>
             <ul className="space-y-2.5">
               {quickLinks.map((item) => (
                 <li key={item.href}>
@@ -95,7 +95,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">Layanan</p>
+            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Layanan</p>
             <ul className="space-y-2.5">
               {services.map((item) => (
                 <li key={item.label}>
@@ -109,22 +109,22 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">Kontak</p>
+            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Kontak</p>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
-                <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
                 <a href="mailto:kratontech@gmail.com" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors duration-200 break-all">kratontech@gmail.com</a>
               </li>
               {/* <li className="flex items-start gap-2.5">
-                <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3" />
                 </svg>
                 <a href="https://www.kratontech.id" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors duration-200">www.kratontech.id</a>
               </li> */}
               <li className="flex items-start gap-2.5">
-                <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
@@ -136,8 +136,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col gap-3 border-t border-slate-800 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-slate-600">© {new Date().getFullYear()} Kraton Tech. All rights reserved.</p>
-          <p className="text-xs text-slate-700">Building Future Technology Solutions</p>
+          <p className="text-xs text-slate-400">© {new Date().getFullYear()} Kraton Tech. All rights reserved.</p>
+          <p className="text-xs text-slate-400">Building Future Technology Solutions</p>
         </div>
       </div>
     </footer>

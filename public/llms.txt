@@ -1,0 +1,10 @@
+# Kraton Tech
+
+> Penyedia jasa pembuatan website & aplikasi, networking, server & cloud, cyber security, dan IT consultant untuk bisnis modern.
+
+## Halaman
+- [Beranda](https://kratontech.my.id/): Ringkasan layanan dan keunggulan
+- [Layanan](https://kratontech.my.id/services): Digital Solution, Networking & Infrastructure, Server & Cloud, Cyber Security, IT Consultant
+- [Portofolio](https://kratontech.my.id/projects): Proyek website, web app, dan aplikasi mobile
+- [Tentang](https://kratontech.my.id/about): Profil perusahaan
+- [Kontak](https://kratontech.my.id/contact): Hubungi tim Kraton Tech
