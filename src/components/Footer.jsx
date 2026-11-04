@@ -72,7 +72,7 @@ export default function Footer() {
             <div className="flex gap-2 pt-1">
               {socials.map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-800 text-slate-400 transition-all duration-200 hover:bg-indigo-600 hover:text-white">
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-800 text-slate-400 sm:h-9 sm:w-9 transition-all duration-200 hover:bg-indigo-600 hover:text-white">
                   {s.icon}
                 </a>
               ))}
@@ -82,10 +82,10 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Navigasi</p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-0.5">
               {quickLinks.map((item) => (
                 <li key={item.href}>
-                  <Link to={item.href} className="text-sm text-slate-400 transition-colors duration-200 hover:text-indigo-400">
+                  <Link to={item.href} className="inline-block py-2 text-sm text-slate-400 transition-colors duration-200 hover:text-indigo-400">
                     {item.label}
                   </Link>
                 </li>
@@ -96,10 +96,10 @@ export default function Footer() {
           {/* Services */}
           <div>
             <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Layanan</p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-0.5">
               {services.map((item) => (
                 <li key={item.label}>
-                  <Link to={item.href} className="text-sm text-slate-400 transition-colors duration-200 hover:text-indigo-400">
+                  <Link to={item.href} className="inline-block py-2 text-sm text-slate-400 transition-colors duration-200 hover:text-indigo-400">
                     {item.label}
                   </Link>
                 </li>
@@ -115,7 +115,7 @@ export default function Footer() {
                 <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                <a href="mailto:kratontech@gmail.com" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors duration-200 break-all">kratontech@gmail.com</a>
+                <a href="mailto:kratontech@gmail.com" className="inline-block py-2 text-sm text-slate-400 hover:text-indigo-400 transition-colors duration-200 break-all">kratontech@gmail.com</a>
               </li>
               {/* <li className="flex items-start gap-2.5">
                 <svg className="mt-0.5 w-4 h-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">

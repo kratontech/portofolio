@@ -40,7 +40,7 @@ const contactInfo = [
 
 const serviceOptions = ['Digital Solution (Web / Mobile)', 'Networking & Infrastructure', 'Server & Cloud Services', 'Cyber Security', 'IT Consultant', 'Lainnya']
 
-const inputClass = "w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 px-4 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none transition focus:border-indigo-400 focus:bg-white dark:focus:bg-slate-600 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900/40"
+const inputClass = "w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 px-4 py-3 text-base sm:py-2.5 sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 outline-none transition focus:border-indigo-400 focus:bg-white dark:focus:bg-slate-600 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900/40"
 
 export default function Contact() {
   useReveal()
@@ -118,7 +118,7 @@ export default function Contact() {
                   </div>
                   {/* Diubah menggunakan button agar tidak muncul preview link di pojok kiri bawah */}
                   <button type="button" onClick={() => handleNavigate(c.href)}
-                    className={`btn-press mt-3 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-150 ${c.accent}`}>
+                    className={`btn-press mt-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold sm:min-h-0 sm:px-3 sm:py-1.5 sm:text-xs transition-all duration-150 ${c.accent}`}>
                     {c.cta}
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                   </button>
@@ -134,7 +134,7 @@ export default function Contact() {
 
             {/* RIGHT - Form */}
             <div className="lg:col-span-3">
-              <div className="section-reveal rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 sm:p-8">
+              <div className="section-reveal rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 sm:p-8">
                 <div className="mb-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-1">Form Konsultasi</p>
                   <h2 className="text-lg font-bold text-slate-900 dark:text-white">Jadwalkan Konsultasi Gratis</h2>
@@ -146,10 +146,10 @@ export default function Contact() {
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400">
                       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     </div>
-                    <h3 className="font-bold text-slate-900 dark:text-white">Mengarahkan ke Instagram...</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs">Silakan kirimkan pesan Anda melalui DM Instagram Kraton Tech. Terima kasih!</p>
+                    <h3 className="font-bold text-slate-900 dark:text-white">Mengarahkan ke WhatsApp...</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs">Lanjutkan mengirim pesan Anda di WhatsApp yang baru terbuka. Jika tidak terbuka, izinkan pop-up lalu coba lagi. Terima kasih!</p>
                     <button onClick={() => { setForm({ name: '', company: '', email: '', phone: '', service: '', message: '' }); setSent(false) }}
-                      className="mt-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400 underline underline-offset-4 hover:text-indigo-500">
+                      className="mt-2 min-h-[44px] px-3 text-sm font-semibold text-indigo-600 dark:text-indigo-400 underline underline-offset-4 hover:text-indigo-500">
                       Kirim pesan lain
                     </button>
                   </div>
@@ -157,39 +157,39 @@ export default function Contact() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
-                        <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Nama Lengkap <span className="text-red-500">*</span></label>
-                        <input name="name" value={form.name} onChange={handleChange} required placeholder="John Doe" className={inputClass} />
+                        <label className="mb-1.5 block text-sm sm:text-xs font-semibold text-slate-700 dark:text-slate-300">Nama Lengkap <span className="text-red-500">*</span></label>
+                        <input name="name" autoComplete="name" value={form.name} onChange={handleChange} required placeholder="John Doe" className={inputClass} />
                       </div>
                       <div>
-                        <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Perusahaan / Instansi</label>
-                        <input name="company" value={form.company} onChange={handleChange} placeholder="PT. Contoh Indonesia" className={inputClass} />
+                        <label className="mb-1.5 block text-sm sm:text-xs font-semibold text-slate-700 dark:text-slate-300">Perusahaan / Instansi</label>
+                        <input name="company" autoComplete="organization" value={form.company} onChange={handleChange} placeholder="PT. Contoh Indonesia" className={inputClass} />
                       </div>
                     </div>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
-                        <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Email</label>
-                        <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="john@perusahaan.com" className={inputClass} />
+                        <label className="mb-1.5 block text-sm sm:text-xs font-semibold text-slate-700 dark:text-slate-300">Email</label>
+                        <input name="email" type="email" inputMode="email" autoComplete="email" value={form.email} onChange={handleChange} placeholder="john@perusahaan.com" className={inputClass} />
                       </div>
                       <div>
-                        <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Nomor Telepon</label>
-                        <input name="phone" value={form.phone} onChange={handleChange} placeholder="08xxxxxxxxxx" className={inputClass} />
+                        <label className="mb-1.5 block text-sm sm:text-xs font-semibold text-slate-700 dark:text-slate-300">Nomor Telepon</label>
+                        <input name="phone" type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={handleChange} placeholder="08xxxxxxxxxx" className={inputClass} />
                       </div>
                     </div>
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Layanan yang Dibutuhkan <span className="text-red-500">*</span></label>
+                      <label className="mb-1.5 block text-sm sm:text-xs font-semibold text-slate-700 dark:text-slate-300">Layanan yang Dibutuhkan <span className="text-red-500">*</span></label>
                       <select name="service" value={form.service} onChange={handleChange} required className={inputClass}>
                         <option value="">Pilih layanan...</option>
                         {serviceOptions.map(s => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 dark:text-slate-300">Deskripsi Kebutuhan <span className="text-red-500">*</span></label>
+                      <label className="mb-1.5 block text-sm sm:text-xs font-semibold text-slate-700 dark:text-slate-300">Deskripsi Kebutuhan <span className="text-red-500">*</span></label>
                       <textarea name="message" value={form.message} onChange={handleChange} required rows={4}
                         placeholder="Jelaskan kebutuhan infrastruktur atau proyek digital Anda secara singkat..."
                         className={inputClass + ' resize-none'} />
                     </div>
                     <button type="submit"
-                      className="btn-press w-full inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
+                      className="btn-press w-full inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
                       Kirim via WhatsApp
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                     </button>

@@ -47,7 +47,7 @@ const techColors = {
 
 function TechBadge({ name }) {
   const cls = techColors[name] || 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-600'
-  return <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-medium ${cls}`}>{name}</span>
+  return <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium ${cls}`}>{name}</span>
 }
 
 export default function Projects() {
@@ -60,6 +60,19 @@ export default function Projects() {
   }, [active])
 
   useEffect(() => { document.title = 'Portfolio | Kraton Tech' }, [])
+
+  // Lightbox: tutup dengan Escape dan kunci scroll halaman di belakangnya
+  useEffect(() => {
+    if (!lightbox) return
+    const onKey = (e) => e.key === 'Escape' && setLightbox(null)
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [lightbox])
 
   const filtered = active === 'Semua' ? projects : projects.filter(p => p.category === active)
 
@@ -88,10 +101,10 @@ export default function Projects() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
 
           {/* FILTER TABS */}
-          <div className="section-reveal mb-8 flex flex-wrap gap-2">
+          <div role="tablist" aria-label="Filter kategori proyek" className="section-reveal no-scrollbar -mx-4 mb-8 flex snap-x gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             {categories.map((cat) => (
-              <button key={cat} onClick={() => setActive(cat)}
-                className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all duration-150 ${
+              <button key={cat} role="tab" aria-selected={active === cat} onClick={() => setActive(cat)}
+                className={`min-h-[40px] shrink-0 snap-start whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-150 sm:min-h-0 sm:px-3.5 sm:py-1.5 sm:text-xs ${
                   active === cat
                     ? 'border-indigo-600 bg-indigo-600 text-white'
                     : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:border-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-400'
@@ -103,7 +116,7 @@ export default function Projects() {
 
           {/* PROJECT GRID */}
           <div className="grid gap-5 sm:grid-cols-2">
-            {filtered.map((project) => (
+            {filtered.map((project, idx) => (
               <div key={project.title}
                 className="group rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden transition-all duration-200 hover:border-indigo-200 dark:hover:border-indigo-600 hover:shadow-md hover:-translate-y-0.5">
                 {project.image ? (
@@ -111,7 +124,8 @@ export default function Projects() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      loading="lazy"
+                      loading={idx === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={idx === 0 ? 'high' : undefined}
                       decoding="async"
                       width="1000"
                       height="500"
@@ -125,13 +139,13 @@ export default function Projects() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     {project.url && (
                       <a href={project.url} target="_blank" rel="noopener noreferrer"
-                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 [@media(hover:none)]:hidden"
                         onClick={e => e.stopPropagation()}>
                         <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-slate-900 backdrop-blur shadow">Lihat Website →</span>
                       </a>
                     )}
                     <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/90 px-2.5 py-1 text-xs font-medium text-white backdrop-blur">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-700 px-2.5 py-1 text-xs font-medium text-white">
                         <span className="h-1.5 w-1.5 rounded-full bg-white" />{project.status}
                       </span>
                     </div>
@@ -139,8 +153,9 @@ export default function Projects() {
                       type="button"
                       onClick={(e) => { e.stopPropagation(); setLightbox({ src: project.image, title: project.title }) }}
                       title="Lihat tampilan lengkap"
-                      className="absolute top-3 right-3 inline-flex items-center justify-center rounded-full bg-white/90 dark:bg-slate-900/80 p-2 text-slate-700 dark:text-slate-200 backdrop-blur shadow opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      aria-label={`Perbesar gambar ${project.title}`}
+                      className="absolute top-3 right-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 backdrop-blur shadow opacity-0 group-hover:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity duration-300 hover:bg-white">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16zM11 8v6M8 11h6" />
                       </svg>
                     </button>
@@ -154,35 +169,41 @@ export default function Projects() {
                   </div>
                 )}
 
-                <div className="p-5">
+                <div className="p-4 sm:p-5">
                   <h2 className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors duration-200">{project.title}</h2>
                   <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{project.desc}</p>
-                  <div className="mt-4 grid grid-cols-2 gap-3">
+                  <div className="mt-4 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2">
                     <div className="rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/40 p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1">Challenge</p>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-1">Challenge</p>
                       <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{project.challenge}</p>
                     </div>
                     <div className="rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/40 p-3">
-                      <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">Hasil</p>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-1">Hasil</p>
                       <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{project.result}</p>
                     </div>
                   </div>
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {project.tech.map(t => <TechBadge key={t} name={t} />)}
                   </div>
+                  {project.url && (
+                    <a href={project.url} target="_blank" rel="noopener noreferrer"
+                      className="mt-4 hidden min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-indigo-200 dark:border-indigo-700 px-4 text-sm font-semibold text-indigo-700 dark:text-indigo-300 transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/30 [@media(hover:none)]:flex">
+                      Lihat Website <span aria-hidden="true">→</span>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
           </div>
 
           {/* CTA */}
-          <div className="section-reveal mt-12 flex flex-col gap-6 rounded-2xl bg-slate-950 p-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="section-reveal mt-12 flex flex-col gap-6 rounded-2xl bg-slate-950 p-6 sm:p-8 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 mb-2">Next Project</p>
               <h3 className="text-lg font-bold text-white sm:text-xl">Proyek Anda bisa menjadi yang berikutnya.</h3>
               <p className="mt-1 text-sm text-slate-400">Diskusikan kebutuhan teknis bersama tim kami.</p>
             </div>
-            <Link to="/contact" className="btn-press shrink-0 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
+            <Link to="/contact" className="btn-press shrink-0 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 sm:w-auto text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
               Mulai Diskusi
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
             </Link>
@@ -197,16 +218,16 @@ export default function Projects() {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-sm"
           onClick={() => setLightbox(null)}
         >
-          <div className="relative max-h-[90vh] max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-label={lightbox.title} className="relative max-h-[90dvh] w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
               onClick={() => setLightbox(null)}
               aria-label="Tutup"
-              className="absolute -top-3 -right-3 inline-flex items-center justify-center rounded-full bg-white text-slate-900 shadow-lg p-2 hover:bg-slate-100 transition-colors"
+              className="absolute right-2 top-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-900 shadow-lg hover:bg-slate-100 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
-            <img src={lightbox.src} alt={lightbox.title} className="w-full max-h-[80vh] object-contain rounded-xl shadow-2xl bg-white" />
+            <img src={lightbox.src} alt={lightbox.title} className="w-full max-h-[75dvh] object-contain rounded-xl shadow-2xl bg-white" />
             <p className="mt-3 text-center text-sm font-medium text-slate-200">{lightbox.title}</p>
           </div>
         </div>

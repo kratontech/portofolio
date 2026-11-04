@@ -30,7 +30,21 @@ export default function Navbar() {
   useEffect(() => {
     setMenuOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Canonical mengikuti halaman aktif (sebelumnya selalu "/")
+    const canonical = document.querySelector('link[rel="canonical"]')
+    if (canonical) {
+      const path = location.pathname.replace(/\/+$/, '')
+      canonical.setAttribute('href', `https://kratontech.my.id${path}` + (path ? '' : '/'))
+    }
   }, [location.pathname])
+
+  // Kunci scroll body saat menu mobile terbuka + tutup dengan tombol Escape
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e) => e.key === 'Escape' && setMenuOpen(false)
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [menuOpen])
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -100,11 +114,11 @@ export default function Navbar() {
               className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
             >
               {dark ? (
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                 </svg>
               )}
@@ -136,14 +150,14 @@ export default function Navbar() {
             <button
               onClick={() => setDark(!dark)}
               aria-label="Toggle dark mode"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 dark:text-slate-400 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               {dark ? (
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                 </svg>
               )}
@@ -152,7 +166,7 @@ export default function Navbar() {
               aria-label="Buka/tutup menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative flex h-9 w-9 items-center justify-center rounded-lg text-slate-700 dark:text-slate-300 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="relative flex h-11 w-11 items-center justify-center rounded-lg text-slate-700 dark:text-slate-300 transition-colors duration-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               <span className="flex flex-col gap-1.5">
                 <span className={`block h-0.5 w-5 rounded-full bg-current transition-all duration-300 origin-center ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
@@ -165,12 +179,13 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className="overflow-hidden md:hidden"
+          className="overflow-y-auto overscroll-contain md:hidden"
           style={{
-            maxHeight: menuOpen ? '400px' : '0',
+            maxHeight: menuOpen ? 'calc(100dvh - 4rem)' : '0',
+            visibility: menuOpen ? 'visible' : 'hidden',
             transition: menuOpen
-              ? 'max-height 0.35s cubic-bezier(0.4,0,0.2,1)'
-              : 'max-height 0.25s cubic-bezier(0.4,0,0.2,1)',
+              ? 'max-height 0.35s cubic-bezier(0.4,0,0.2,1), visibility 0s'
+              : 'max-height 0.25s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.25s',
           }}
         >
           <div
@@ -188,7 +203,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+                  className={`flex min-h-[44px] items-center gap-2 rounded-xl px-4 py-3 text-base font-medium transition-all duration-200 ${
                     isActive(item.href)
                       ? 'bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300'
                       : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
@@ -241,7 +256,7 @@ export default function Navbar() {
           pointerEvents: showScrollTop ? 'auto' : 'none',
           transition: 'opacity 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1)',
         }}
-        className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-500 hover:-translate-y-1 hover:shadow-xl active:scale-95 transition-all duration-200"
+        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-50 flex h-12 w-12 sm:right-6 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-500 hover:-translate-y-1 hover:shadow-xl active:scale-95 transition-all duration-200"
       >
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />

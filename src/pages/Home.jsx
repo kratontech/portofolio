@@ -61,12 +61,12 @@ export default function Home() {
             <p className="section-reveal mt-6 max-w-2xl text-slate-400 text-base sm:text-lg leading-relaxed">
               Kraton Tech menghadirkan solusi teknologi enterprise terintegrasi — dari infrastruktur jaringan, cloud & server, keamanan siber, hingga pengembangan platform digital.
             </p>
-            <div className="section-reveal mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-press inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
+            <div className="section-reveal mt-8 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
+              <Link to="/contact" className="btn-press inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-500 hover:-translate-y-0.5">
                 Jadwalkan Konsultasi
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
               </Link>
-              <Link to="/services" className="btn-press inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-200 backdrop-blur transition-all duration-200 hover:border-slate-500 hover:bg-slate-800 hover:-translate-y-0.5">
+              <Link to="/services" className="btn-press inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/60 px-5 py-2.5 text-sm font-semibold text-slate-200 backdrop-blur transition-all duration-200 hover:border-slate-500 hover:bg-slate-800 hover:-translate-y-0.5">
                 Lihat Layanan
               </Link>
             </div>
@@ -168,7 +168,7 @@ export default function Home() {
                   Jadwalkan Meeting
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                 </Link>
-                <Link to="/services" className="text-xs text-slate-500 underline underline-offset-4 hover:text-slate-300 transition-colors">Lihat semua layanan →</Link>
+                <Link to="/services" className="inline-flex min-h-[44px] items-center text-sm text-slate-500 underline underline-offset-4 hover:text-slate-300 transition-colors">Lihat semua layanan →</Link>
               </div>
             </div>
           </div>
